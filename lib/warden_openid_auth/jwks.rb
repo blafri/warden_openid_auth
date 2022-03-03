@@ -3,15 +3,23 @@
 require 'digest'
 
 module WardenOpenidAuth
+  # Represents a JSON Web Key Set. It will cache the results of the web request to get the JWKS so
+  # that it does not need to make an external request for the JWKS to authenticate every user.
   class JWKS
     attr_reader :jwks_url, :cache, :cache_options
 
+    # @param jwks_url [String] the URL that the JSON Web Key Set can be retrieved from.
+    # @param config [#cache, #cache_options] the object that holds the cache and cache options.
     def initialize(jwks_url:, config: WardenOpenidAuth.config)
       @jwks_url = jwks_url
       @cache = config.cache
       @cache_options = config.cache_options
     end
 
+    # Checks the cache to see if it contains the JSON Web Key Set and returns it. If it is not in
+    # the cache it will fetch it from the URL specified.
+    #
+    # @return [Hash] a Hash representation of the JSON Web Key Set.
     def key_set
       result = cache.read(cache_key)
       return result unless result.nil?

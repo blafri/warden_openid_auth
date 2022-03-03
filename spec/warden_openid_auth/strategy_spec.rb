@@ -15,7 +15,7 @@ RSpec.describe WardenOpenidAuth::Strategy do
 
     Rack::Builder.new do
       use Warden::Manager do |config|
-        config.failure_app = Proc.new { [401, {}, []] }
+        config.failure_app = proc { [401, {}, []] }
       end
 
       run klass.new
@@ -27,9 +27,9 @@ RSpec.describe WardenOpenidAuth::Strategy do
 
     allow(cache).to receive(:read).with('jwks_8599225666c70eaa7045f5d0aac32a11').and_return({ keys: [jwk.export] })
     allow(cache).to receive(:read).with('openid_metadata')
-      .and_return({ 'token_endpoint' => 'http://openid-test.int/token',
-                    'jwks_uri' => 'http://test.int/jwks',
-                    'issuer' => 'http://openid-test.int' })
+                                  .and_return({ 'token_endpoint' => 'http://openid-test.int/token',
+                                                'jwks_uri' => 'http://test.int/jwks',
+                                                'issuer' => 'http://openid-test.int' })
   end
 
   context 'when returned token is valid' do
@@ -116,7 +116,7 @@ RSpec.describe WardenOpenidAuth::Strategy do
   context 'when there is an error fetching the OpenID metadata' do
     before do
       allow(cache).to receive(:read).with('openid_metadata').and_return(nil)
-      stub_request(:get, "http://test.int/metadata").to_timeout
+      stub_request(:get, 'http://test.int/metadata').to_timeout
     end
 
     it 'triggers the failure app' do
@@ -136,7 +136,7 @@ RSpec.describe WardenOpenidAuth::Strategy do
   context 'when there is an error fetching the JSON Web Key Set' do
     before do
       allow(cache).to receive(:read).with('jwks_8599225666c70eaa7045f5d0aac32a11').and_return(nil)
-      stub_request(:get, "http://test.int/jwks").to_timeout
+      stub_request(:get, 'http://test.int/jwks').to_timeout
       stub_request(:post, 'http://openid-test.int/token')
         .to_return(status: 200,
                    body: { id_token: generate_token(jwk: jwk, payload: { user_name: 'test_user_name' }) }.to_json,

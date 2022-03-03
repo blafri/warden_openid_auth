@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/VerifiedDoubles
 RSpec.describe WardenOpenidAuth::OpenidMetadata do
   let(:config) { described_class.new }
   let(:cache) { double('Cache') }

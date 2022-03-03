@@ -20,12 +20,12 @@ module WardenOpenidAuth
       @client_id = config.client_id
     end
 
-    # Returns the endpoint for authorization
+    # @return [String] the endpoint for authorization
     def authorization_endpoint
       config_document['authorization_endpoint']
     end
 
-    # Returns the full URL for authorization including parameters
+    # @return [String] the full URL for authorization including parameters
     def authorization_url(redirect_uri:, state:, scope: 'openid profile email')
       uri = URI(authorization_endpoint)
       uri.query = "client_id=#{url_encode(client_id)}&redirect_uri=#{url_encode(redirect_uri)}" \
@@ -33,22 +33,22 @@ module WardenOpenidAuth
       uri.to_s
     end
 
-    # Returns the endpoint to hit to get tokens.
+    # @return [String] the endpoint to hit to get tokens.
     def token_endpoint
       config_document['token_endpoint']
     end
 
-    # Returns the endpoint to hit to get the JSON Web Key Set.
+    # @return [String] the endpoint to hit to get the JSON Web Key Set.
     def jwks_uri
       config_document['jwks_uri']
     end
 
-    # Returns the issuer according to the metadata document
+    # @return [String] the issuer according to the metadata document.
     def issuer
       config_document['issuer']
     end
 
-    # Dumps a hash representation of the OpenID configuration document.
+    # @return [Hash] a hash representation of the OpenID configuration document.
     def to_h
       config_document
     end

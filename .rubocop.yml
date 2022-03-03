@@ -1,2 +1,19 @@
+require:
+  - rubocop-rspec
+  - rubocop-rake
+
 AllCops:
   NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Gemspec/OrderedDependencies:
+  Enabled: false

@@ -70,6 +70,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.16.0)
       parser (>= 3.1.1.0)
+    rubocop-rake (0.6.0)
+      rubocop (~> 1.0)
+    rubocop-rspec (2.9.0)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     unicode-display_width (2.1.0)
@@ -89,6 +93,8 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.11)
   rubocop (~> 1.25)
+  rubocop-rake (~> 0.6)
+  rubocop-rspec (~> 2.9)
   warden_openid_auth!
   webmock (~> 3.14)
 

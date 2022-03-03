@@ -14,10 +14,12 @@ module WardenOpenidAuth
     include Dry::Monads[:result]
     include Dry::Monads::Do.for(:validate_user)
 
+    # Only run strategy if this evaluates to true.
     def valid?
       params.key?('code') || params.key?('error')
     end
 
+    # Authenticate and log the user in.
     def authenticate!
       if params.key?('error')
         fail!("There was a problem loging you in. #{params['error_description']}")

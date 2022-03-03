@@ -17,7 +17,7 @@ module WardenOpenidAuth
   setting :openid_metadata_url, constructor: ->(url) { URI(url) }
   setting :cache
   setting :cache_options
-  setting :user_finder, default: Proc.new { nil }
+  setting :user_finder, default: proc {}
 end
 
 Warden::Strategies.add(:openid, WardenOpenidAuth::Strategy)
