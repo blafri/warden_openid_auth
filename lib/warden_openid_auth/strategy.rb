@@ -66,7 +66,7 @@ module WardenOpenidAuth
     def fetch_user(claims)
       result = config.user_finder.call(claims)
       return result if result.is_a?(Dry::Monads::Result)
-      return Failure(message: 'Could not find user.') if result.nil?
+      return Failure(message: nil) if result.nil?
 
       Success(result)
     end
