@@ -20,37 +20,32 @@ module WardenOpenidAuth
       @client_id = config.client_id
     end
 
-    # @return [String] the endpoint for authorization
-    def authorization_endpoint
-      config_document['authorization_endpoint']
-    end
-
     # @return [String] the full URL for authorization including parameters
     def authorization_url(redirect_uri:, state:, scope: 'openid profile email')
-      uri = URI(authorization_endpoint)
+      uri = URI(config_document['authorization_endpoint'])
       uri.query = "client_id=#{url_encode(client_id)}&redirect_uri=#{url_encode(redirect_uri)}" \
                   "&scope=#{url_encode(scope)}&state=#{url_encode(state)}&response_mode=query&response_type=code"
       uri.to_s
     end
 
-    # @return [String] the endpoint to hit to get tokens.
-    def token_endpoint
-      config_document['token_endpoint']
-    end
-
-    # @return [String] the endpoint to hit to get the JSON Web Key Set.
-    def jwks_uri
-      config_document['jwks_uri']
-    end
-
-    # @return [String] the issuer according to the metadata document.
-    def issuer
-      config_document['issuer']
-    end
-
     # @return [Hash] a hash representation of the OpenID configuration document.
     def to_h
       config_document
+    end
+
+    # Check if the method asked for is a key in the config_document. If it is return it. Otherwise
+    # call parent which will throw a NoMethodError error.
+    def method_missing(name)
+      config_document.fetch(name.to_s) { super }
+    end
+
+    # if the the object does not respond to the method passed to respond_to? Check if the method
+    # called is a key on config_document, if it is respond with true indicating that the object does
+    # respond to that method.
+    def respond_to_missing?(name)
+      return true if config_document.include?(name.to_s)
+
+      super
     end
 
     private
