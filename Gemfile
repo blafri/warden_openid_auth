@@ -11,5 +11,5 @@ gem 'rubocop', '~> 1.25', require: false
 gem 'rubocop-rspec', '~> 2.9', require: false
 gem 'rubocop-rake', '~> 0.6', require: false
 gem 'webmock', '~> 3.14'
-gem 'rack-test', '~> 1.1'
+gem 'rack-test', '~> 2.0'
 gem 'byebug', '~> 11.1'
