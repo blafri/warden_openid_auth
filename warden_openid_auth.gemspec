@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency 'dry-configurable', '~> 0.14'
   spec.add_dependency 'faraday', '~> 2.2'
-  spec.add_dependency 'faraday-retry', '~> 1.0'
+  spec.add_dependency 'faraday-retry', '~> 2.0'
   spec.add_dependency 'jwt', '~> 2.3'
   spec.add_dependency 'dry-monads', '~> 1.4'
   spec.add_dependency 'warden', '~> 1.2'
