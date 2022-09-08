@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    warden_openid_auth (0.1.5)
+    warden_openid_auth (0.1.6)
       dry-configurable (~> 0.14)
       dry-monads (~> 1.4)
       faraday (~> 2.2)
