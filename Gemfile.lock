@@ -20,11 +20,12 @@ GEM
     crack (0.4.5)
       rexml
     diff-lcs (1.5.0)
-    dry-configurable (0.15.0)
-      concurrent-ruby (~> 1.0)
+    dry-configurable (0.16.1)
       dry-core (~> 0.6)
-    dry-core (0.8.1)
+      zeitwerk (~> 2.6)
+    dry-core (0.9.1)
       concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
     dry-monads (1.4.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.7)
@@ -86,6 +87,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   x86_64-linux
