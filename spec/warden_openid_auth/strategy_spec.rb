@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rack'
+
 RSpec.describe WardenOpenidAuth::Strategy do
   include Rack::Test::Methods
 
