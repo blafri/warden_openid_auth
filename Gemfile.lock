@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    warden_openid_auth (0.1.8)
+    warden_openid_auth (0.1.9)
       dry-configurable (~> 1.0)
       dry-monads (~> 1.4)
       faraday (~> 2.2)
@@ -108,4 +108,4 @@ DEPENDENCIES
   webmock (~> 3.14)
 
 BUNDLED WITH
-   2.3.15
+   2.4.5
