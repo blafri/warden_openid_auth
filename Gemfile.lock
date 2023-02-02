@@ -38,7 +38,7 @@ GEM
       faraday (~> 2.0)
     hashdiff (1.0.1)
     json (2.6.3)
-    jwt (2.6.0)
+    jwt (2.7.0)
     parallel (1.22.1)
     parser (3.2.0.0)
       ast (~> 2.4.1)
